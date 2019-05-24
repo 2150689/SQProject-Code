@@ -5,21 +5,51 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <title>Contacts</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 <div class="container">
-    <h4>Welcome to contacts</h4>
+    <!--<div class="container">
+        <h4>Welcome to contacts</h4>
+        <div>
+            <form id="plsForm" action="#" method="get">
+                <button type="submit" class="btn btn-primary">Get</button>
+            </form>
+        </div>
+    </div>-->
 
-    <div>
-        <form id="plsForm" action="" method="get">
-            <button type="submit" class="btn btn-primary" >Get</button>
+    <div class="row">
+        <form id="sourceForm" action="#" class="form-horizontal" method="post" novalidate>
+            <div class="form-group">
+                <label class="control-label col-md-1" for="search">Source:</label>
+                <select id="source"></select>
+                <button type="submit" class="btn btn-primary">Search by Source!</button>
+            </div>
         </form>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <div id="resultPanel" class="panel panel-success hidden">
+        <div class="panel-heading">
+            <h3 class="panel-title">Search results for "<span>QUERY</span>"</h3>
+        </div>
+        <div class="panel-body">
+            <table id="contactsTable" class="display" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th>Given Name</th>
+                    <th>Surname</th>
+                    <th>Phone</th>
+                    <th>Source</th>
+                    <th>City</th>
+                    <th>Image</th>
+                    <th>Details</th>
+                    <th></th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
 </div>
-
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-<script type="text/javascript" src="js/contacts.js"></script>
+<script src="js/contacts.js"></script>
 </body>
 </html>
