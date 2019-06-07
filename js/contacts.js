@@ -24,7 +24,7 @@
             }
         });
         //Make it available again
-        $select.removeAttr('disabled')
+        $select.removeAttr('disabled');
     }
     
     window.onload = function () {
