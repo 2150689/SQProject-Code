@@ -26,72 +26,83 @@
         //Make it available again
         $select.removeAttr('disabled')
     }
+    
+    window.onload = function () {
 
-    function filterBySource ($buttonSource, source){
-        var $panel = $('#resultPanel');
+        let $source = $('#sourceForm');
+        let $buttonSource = $('button', $source);
+        (function() {
+            let url = "http://contactsqs2.apphb.com/Service.svc/rest/contacts";
+            $.getJSON(url)
+                .done(function(data) {
+                    fetchSources(data);
+                    filterBySource(data, $buttonSource, "All");
+                });
+        })();
+
+        $source.submit(function (e) {
+            e.preventDefault();
+            filterBySource(null, $buttonSource, $('#source').val());
+        });
+    };
+
+    function filterBySource (data, $buttonSource, source) {
+        let $panel = $('#resultPanel');
         $buttonSource.attr('disabled', 'disabled');
         $panel.addClass('hidden');
-        var url = "";
-        if(source !== "All"){
-            url = "http://contactsqs2.apphb.com/Service.svc/rest/contacts/bysource/" + source;
-        }else{
-            url = "http://contactsqs2.apphb.com/Service.svc/rest/contacts";
-        }
-        $.getJSON( url)
-            .done(function(results) {
-                console.log(results);
-                updatePanel($panel, results);
-            }).fail(function(err) {
-                console.log(err);
-            }).always(function() {
-                $buttonSource.removeAttr('disabled');
-                $panel.removeClass('hidden');
+        let url = "";
+        if (data == null) {
+            if (source !== "All") {
+                url = "http://contactsqs2.apphb.com/Service.svc/rest/contacts/bysource/" + source;
+            } else {
+                url = "http://contactsqs2.apphb.com/Service.svc/rest/contacts";
+            }
+            $.getJSON(url)
+                .done(function (results) {
+                    $('#contactsTable').DataTable().clear().destroy();
+                    updatePanel($panel, results);
+                })
+                .fail(function (err) {
+                    console.log(err);
+                })
+                .always(function () {
+                    $buttonSource.removeAttr('disabled');
+                    $panel.removeClass('hidden');
             });
+        }else{
+            updatePanel($panel, data);
+            $buttonSource.removeAttr('disabled');
+            $panel.removeClass('hidden');
+        }
     }
 
     function updatePanel($panel, results) {
-        console.log(results);
-        $panel.removeClass('disabled');
-        results.forEach(function(dataLine) {
-            var codeForLine = "<tr>" +
-                     "<td>" + ((dataLine.GivenName != null) ? dataLine.GivenName : "--------------") +
-                "</td><td>" + ((dataLine.Surname != null) ? dataLine.Surname : "--------------") +
-                "</td><td>" + ((dataLine.Phone != null) ? dataLine.Phone : "--------------") +
-                "</td><td>" + ((dataLine.City != null) ? dataLine.City : "--------------") +
-                "</td><td>" + ((dataLine.Source != null) ? dataLine.Source : "--------------") +
-                "</td><td>" + ((dataLine.PhotoUrl != null) ? "<img src=\"" + dataLine.PhotoUrl + "\">" : "<img src=\" https://upload.wikimedia.org/wikipedia/en/e/ee/Unknown-person.gif \">") +
-                "</td><td>" + "<a href=\"details.html?id=" + dataLine.Guid +"\" class=\"btn btn-primary\">Details</a></td>" + "</td></tr>";
+         console.log(results);
+         let t = $('#contactsTable').DataTable({
+            "order": [],
+            "columns": [
+                {"title": "ID", "name": "ID", "orderable": true},
+                {"title": "GivenName", "name": "GivenName", "orderable": true},
+                {"title": "Surname", "name": "Surname", "orderable": true},
+                {"title": "Phone", "name": "Phone", "orderable": true},
+                {"title": "Source", "name": "Source", "orderable": true},
+                {"title": "City", "name": "City", "orderable": true},
+                {"title": "Details", "name": "Details", "orderable": false, "searchable": false}
+            ]
+        });
 
-            $("#contactsTable").after(codeForLine);
-            //Indexação
+        let counter = 1;
+        results.forEach( function(dataLine) {
+            t.row.add( [
+                ((counter)),
+                ((dataLine.GivenName != null) ? dataLine.GivenName : "--------------"),
+                ((dataLine.Surname != null) ? dataLine.Surname : "--------------"),
+                ((dataLine.Phone != null) ? dataLine.Phone : "--------------"),
+                ((dataLine.Source != null) ? dataLine.Source : "--------------"),
+                ((dataLine.City != null) ? dataLine.City : "--------------"),
+                "<a href=\"details.html?id=" + dataLine.Guid +"\" class=\"btn btn-primary\">Details</a>"
+            ]).draw( false );
+            counter++;
         });
     }
-
-    function createThumbnail(imageUrl, url) {
-        var img = imageUrl === null ? 'http://placehold.it/64x85' : imageUrl;
-        var $image = $('<img/>', {src: img, 'class': 'media-object', width:140, height:80});
-        var $anchor = $('<a/>', {href: url})
-            .append($image);
-        return $('<div/>', {'class': 'media-left'})
-            .append($anchor);
-    }
-
-    window.onload = function () {
-        (function() {
-            var url = "http://contactsqs2.apphb.com/Service.svc/rest/contacts";
-            $.getJSON( url)
-                .done(function(data) {
-                    fetchSources(data);
-                    console.log(data);
-                });
-        })();
-        var $sourceForm = $('#sourceForm');
-        var $buttonSource = $('button', $sourceForm);
-
-        $sourceForm.submit(function (e) {
-            e.preventDefault();
-            var source = $('#source').val();
-            filterBySource($buttonSource, source);
-        });
-    };
 })();
