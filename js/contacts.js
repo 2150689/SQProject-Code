@@ -26,26 +26,7 @@
         //Make it available again
         $select.removeAttr('disabled');
     }
-    
-    window.onload = function () {
-
-        let $source = $('#sourceForm');
-        let $buttonSource = $('button', $source);
-        (function() {
-            let url = "http://contactsqs2.apphb.com/Service.svc/rest/contacts";
-            $.getJSON(url)
-                .done(function(data) {
-                    fetchSources(data);
-                    filterBySource(data, $buttonSource, "All");
-                });
-        })();
-
-        $source.submit(function (e) {
-            e.preventDefault();
-            filterBySource(null, $buttonSource, $('#source').val());
-        });
-    };
-
+   
     function filterBySource (data, $buttonSource, source) {
         let $panel = $('#resultPanel');
         $buttonSource.attr('disabled', 'disabled');
@@ -105,4 +86,20 @@
             counter++;
         });
     }
+
+    let $source = $('#sourceForm');
+    let $buttonSource = $('button', $source);
+    (function() {
+        let url = "http://contactsqs2.apphb.com/Service.svc/rest/contacts";
+        $.getJSON(url)
+            .done(function(data) {
+                fetchSources(data);
+                filterBySource(data, $buttonSource, "All");
+            });
+    })();
+
+    $source.submit(function (e) {
+        e.preventDefault();
+        filterBySource(null, $buttonSource, $('#source').val());
+    });
 })();
