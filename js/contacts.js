@@ -24,9 +24,9 @@
             }
         });
         //Make it available again
-        $select.removeAttr('disabled');
+        $select.removeAttr('disabled')
     }
-   
+
     function filterBySource (data, $buttonSource, source) {
         let $panel = $('#resultPanel');
         $buttonSource.attr('disabled', 'disabled');
@@ -49,7 +49,7 @@
                 .always(function () {
                     $buttonSource.removeAttr('disabled');
                     $panel.removeClass('hidden');
-            });
+                });
         }else{
             updatePanel($panel, data);
             $buttonSource.removeAttr('disabled');
@@ -58,8 +58,8 @@
     }
 
     function updatePanel($panel, results) {
-         console.log(results);
-         let t = $('#contactsTable').DataTable({
+        console.log(results);
+        let t = $('#contactsTable').DataTable({
             "order": [],
             "columns": [
                 {"title": "ID", "name": "ID", "orderable": true},
@@ -89,17 +89,31 @@
 
     let $source = $('#sourceForm');
     let $buttonSource = $('button', $source);
-    (function() {
+    /*(function() {
         let url = "http://contactsqs2.apphb.com/Service.svc/rest/contacts";
         $.getJSON(url)
             .done(function(data) {
                 fetchSources(data);
                 filterBySource(data, $buttonSource, "All");
             });
-    })();
+    })();*/
+
+
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        data: {},
+        url: "http://contactsqs2.apphb.com/Service.svc/rest/contacts",
+        success: function (items) {
+            console.log(items);
+            fetchSources(items);
+            filterBySource(items, $buttonSource, "All");
+        }
+    });
 
     $source.submit(function (e) {
         e.preventDefault();
         filterBySource(null, $buttonSource, $('#source').val());
     });
+
 })();
