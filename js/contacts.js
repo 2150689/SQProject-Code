@@ -24,7 +24,7 @@
             }
         });
         //Make it available again
-        $select.removeAttr('disabled')
+        $select.removeAttr('disabled');
     }
 
     function filterBySource (data, $buttonSource, source) {
