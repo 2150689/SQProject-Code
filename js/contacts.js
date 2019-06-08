@@ -1,7 +1,7 @@
-(function() {
+(function () {
     'use strict';
 
-    function fetchSources (item) {
+    function fetchSources(item) {
         //Array that will contain the sources avaliable;
         var arrayToAdd = [];
 
@@ -27,11 +27,11 @@
         $select.removeAttr('disabled');
     }
 
-    function filterBySource (data, $buttonSource, source) {
-        let $panel = $('#resultPanel');
+    function filterBySource(data, $buttonSource, source) {
+        var $panel = $('#resultPanel');
         $buttonSource.attr('disabled', 'disabled');
         $panel.addClass('hidden');
-        let url = "";
+        var url = "";
         if (data == null) {
             if (source !== "All") {
                 url = "http://contactsqs2.apphb.com/Service.svc/rest/contacts/bysource/" + source;
@@ -59,7 +59,7 @@
 
     function updatePanel($panel, results) {
         console.log(results);
-        let t = $('#contactsTable').DataTable({
+        var t = $('#contactsTable').DataTable({
             "order": [],
             "columns": [
                 {"title": "ID", "name": "ID", "orderable": true},
@@ -72,10 +72,10 @@
             ]
         });
 
-        let counter = 1;
+        var counter = 1;
         results.forEach( function(dataLine) {
             t.row.add( [
-                ((counter)),
+                counter,
                 ((dataLine.GivenName != null) ? dataLine.GivenName : "--------------"),
                 ((dataLine.Surname != null) ? dataLine.Surname : "--------------"),
                 ((dataLine.Phone != null) ? dataLine.Phone : "--------------"),
@@ -87,8 +87,8 @@
         });
     }
 
-    let $source = $('#sourceForm');
-    let $buttonSource = $('button', $source);
+    var $source = $('#sourceForm');
+    var $buttonSource = $('button', $source);
     /*(function() {
         let url = "http://contactsqs2.apphb.com/Service.svc/rest/contacts";
         $.getJSON(url)
