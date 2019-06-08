@@ -89,27 +89,14 @@
 
     var $source = $('#sourceForm');
     var $buttonSource = $('button', $source);
-    /*(function() {
+    (function() {
         let url = "http://contactsqs2.apphb.com/Service.svc/rest/contacts";
         $.getJSON(url)
             .done(function(data) {
                 fetchSources(data);
                 filterBySource(data, $buttonSource, "All");
             });
-    })();*/
-
-
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        data: {},
-        url: "http://contactsqs2.apphb.com/Service.svc/rest/contacts",
-        success: function (items) {
-            console.log(items);
-            fetchSources(items);
-            filterBySource(items, $buttonSource, "All");
-        }
-    });
+    })();
 
     $source.submit(function (e) {
         e.preventDefault();
