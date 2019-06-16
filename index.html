@@ -1,142 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta content="width=device-width, initial-scale=1" name="viewport">
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-        <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
-        <title>Contacts Landing Page</title>
-    </head>
-    <div class="container">
-        <div class="row">
-            <form action="#" class="form-horizontal col-12" id="sourceForm" method="post" novalidate>
-                <div class="form-group">
-                    <label class="control-label col-md-1">Source:</label>
-                    <select id="source"></select>
-                    <button class="btn btn-primary" type="submit">Search by Source!</button>
-                </div>
-            </form>
-            <a href="duplicates.html" class="btn btn-primary">Duplicates Part</a>
-        </div>
-        <div id="resultPanel" class="panel panel-success hidden">
-            <div class="panel-body">
-                <table id="contactsTable" class="display" style="width:100%">
-                </table>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+    <title>Contacts Landing Page</title>
+</head>
+<div class="container">
+    <div class="row">
+        <form action="#" class="form-horizontal col-12" id="sourceForm" method="post" novalidate>
+            <div class="form-group">
+                <label class="control-label col-md-1">Source:</label>
+                <select id="source"></select>
+                <button class="btn btn-primary" type="submit">Search by Source!</button>
             </div>
+        </form>
+        <a href="duplicates.html" class="btn btn-primary">Duplicates Part</a>
+    </div>
+    <div id="resultPanel" class="panel panel-success hidden">
+        <div class="panel-body">
+            <table id="contactsTable" class="display" style="width:100%">
+            </table>
         </div>
-
     </div>
 
-    <script>
-        function fetchSources(item) {
-            //Array that will contain the sources avaliable;
-            var arrayToAdd = [];
-
-            //Part that will get the SELECT Tag.
-            var $select = $('#source');
-            //We need to add the .source to all items.
-            $select.attr('disabled', 'disabled');
-
-            //The first position must contain "ALL"
-            arrayToAdd.push("All");
-            $select.append($('<option>', {"value": "All"}).append("All"));
-
-            //For each item, on the received argument item;
-            item.forEach(function(item){
-                if(!arrayToAdd.includes(item.Source)){
-                    //push it to the array, so that it wont get repeated;
-                    arrayToAdd.push(item.Source);
-                    //Add it to the SELECT Tag.
-                    $select.append($('<option>', {"value": item.Source}).append(item.Source));
-                }
-            });
-            //Make it available again
-            $select.removeAttr('disabled');
-        }
-
-        function filterBySource(data, $buttonSource, source) {
-            var $panel = $('#resultPanel');
-            $buttonSource.attr('disabled', 'disabled');
-            $panel.addClass('hidden');
-            var url = "";
-            if (data == null) {
-                if (source !== "All") {
-                    url = "http://contactsqs2.apphb.com/Service.svc/rest/contacts/bysource/" + source;
-                } else {
-                    url = "http://contactsqs2.apphb.com/Service.svc/rest/contacts";
-                }
-                $.getJSON(url)
-                    .done(function (results) {
-                        $('#contactsTable').DataTable().clear().destroy();
-                        updatePanel($panel, results);
-                    })
-                    .fail(function (err) {
-                        console.log(err);
-                    })
-                    .always(function () {
-                        $buttonSource.removeAttr('disabled');
-                        $panel.removeClass('hidden');
-                    });
-            }else{
-                updatePanel($panel, data);
-                $buttonSource.removeAttr('disabled');
-                $panel.removeClass('hidden');
-            }
-        }
-
-        function updatePanel($panel, results) {
-            console.log(results);
-            var t = $('#contactsTable').DataTable({
-                "order": [],
-                "columns": [
-                    {"title": "ID", "name": "ID", "orderable": true},
-                    {"title": "GivenName", "name": "GivenName", "orderable": true},
-                    {"title": "Surname", "name": "Surname", "orderable": true},
-                    {"title": "Phone", "name": "Phone", "orderable": true},
-                    {"title": "Source", "name": "Source", "orderable": true},
-                    {"title": "City", "name": "City", "orderable": true},
-                    {"title": "Details", "name": "Details", "orderable": false, "searchable": false}
-                ]
-            });
-
-            var counter = 1;
-            results.forEach( function(dataLine) {
-                t.row.add( [
-                    counter,
-                    ((dataLine.GivenName != null) ? dataLine.GivenName : "--------------"),
-                    ((dataLine.Surname != null) ? dataLine.Surname : "--------------"),
-                    ((dataLine.Phone != null) ? dataLine.Phone : "--------------"),
-                    ((dataLine.Source != null) ? dataLine.Source : "--------------"),
-                    ((dataLine.City != null) ? dataLine.City : "--------------"),
-                    "<a href=\"details.html?id=" + dataLine.Guid +"\" class=\"btn btn-primary\">Details</a>"
-                ]).draw( false );
-                counter++;
-            });
-        }
-
-        var $source = $('#sourceForm');
-        var $buttonSource = $('button', $source);
-   	    $.ajax({
-	        type: "GET",
-	        dataType: "json",
-	        data: {},
-	        url: "http://contactsqs2.apphb.com/Service.svc/rest/contacts",
-	        success: function (items) {
-	            console.log(items);
-	            fetchSources(items);
-	            filterBySource(items, $buttonSource, "All");
-	        }
-	    });
-
-        $source.submit(function (e) {
-            e.preventDefault();
-            filterBySource(null, $buttonSource, $('#source').val());
-        });
-    </script>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    </body>
-    <!--<script src="js/contacts.js"></script>-->
+</div>
+</body>
+<script src="js/contacts.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 </html>
