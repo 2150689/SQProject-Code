@@ -225,7 +225,6 @@
 
                 //Resetting all variables
                 stringToAdd = "";
-                arrayColumns = [];
                 counter++;
             }
         }
@@ -315,7 +314,7 @@
                     if($.inArray(el.name, uniqueInputs) === -1) uniqueInputs.push(el.name);
                 });
 
-                let input, value;
+                let input;
                 let boolean = false;
                 let keyPosition = 0;
                 for(let i = 1; i < uniqueInputs.length; i++) {
@@ -325,8 +324,6 @@
                     for(let nodePosition = 0; nodePosition < input.length; nodePosition++){
                         if(input[nodePosition].checked){
                             boolean = true;
-                            value = input[nodePosition].value;
-
                             //Does is not end with a .0? Then it means the keyPosition is increased.
                             if(uniqueInputs[i].endsWith(".0")){
                                 keyPosition++;
