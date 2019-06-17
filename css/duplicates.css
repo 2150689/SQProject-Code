@@ -1,0 +1,23 @@
+.sectionColor {
+    background-color: #FFE6E6;
+}
+
+.sectionwhite {
+    background-color: #FFFFFF;
+}
+
+#table {
+    table-layout: fixed;
+}
+
+.th{
+    text-align: center
+}
+
+.rd{
+    text-align: center
+}
+
+.right_header {
+    float: right;
+}
