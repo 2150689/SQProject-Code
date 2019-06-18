@@ -119,9 +119,9 @@
                 return true;
             }
 
-            /*if(array[arrayPosition].GivenName === contact.GivenName && array[arrayPosition].Surname === contact.Surname){
+            if(array[arrayPosition].GivenName === contact.GivenName && array[arrayPosition].Surname === contact.Surname){
                 return true;
-            }*/
+            }
 
             /*if(array[arrayPosition].Phone === contact.Phone || array[arrayPosition].Email === contact.Email){
                 return true;
