@@ -14,20 +14,21 @@
             .done(function(results) {
                 let verticalTable = "";
                 //For each key/value gotten, which only gets the ones that aren't NULL
-                for(let [key, value] of handleArray(results).entries()){
-                    verticalTable = verticalTable +
+                populateTable(handleArray(results))
+
+
+                    /*verticalTable = verticalTable +
                         "<tr>" +
                         "<th>" + key + "</th>" +
                         "<td>" + value+ "</td>" +
-                        "</tr>"
-                }
+                        "</tr>"*/
+
 
                 //Add the photo case there is a photoURL
                 $("#photoHolder").attr("src", ((results.PhotoUrl != null) ? results.PhotoUrl : "https://upload.wikimedia.org/wikipedia/en/e/ee/Unknown-person.gif"));
 
                 //Add the table
-                $("#detailsTable").after(verticalTable);
-                $("#detailsTable").remove("hidden");
+                //$("#detailsTable").after(verticalTable);
             }).fail(function(err) {
             console.log(err);
             alert("Some error occurred. Going back");
@@ -37,6 +38,20 @@
             // $panel.removeClass('hidden');
         });
     };
+
+    function populateTable(data){
+        let table = document.getElementById("detailsTable");
+        for(const key of data.keys()){
+            let row = table.insertRow();
+            let cell1 = row.insertCell(0);
+            let text1 = document.createTextNode(key);
+            cell1.appendChild(text1);
+            let cell2 = row.insertCell(1);
+            let text2 = document.createTextNode(data.get(key));
+            cell2.appendChild(text2);
+        }
+    }
+
 
     function getUrlVars() {
         var vars = {};
