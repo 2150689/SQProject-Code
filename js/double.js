@@ -194,7 +194,7 @@
                     stringToAdd += '<tr><th scope="row" align="center">' + (position + 1) + '</th>';
                     for (let columnsPos = 0; columnsPos < arrayColumns.length; columnsPos++) {
                         if(mapToIterate.get(keyPosition)[position][arrayColumns[columnsPos]] === null){
-                            stringToAdd += '<td style="text-align:center">' + "- - - -" + '</td>';
+                            stringToAdd += '<td style="text-align:center">' + "--------------" + '</td>';
                         }else{
                             stringToAdd += '<td style="text-align:center">' + mapToIterate.get(keyPosition)[position][arrayColumns[columnsPos]] + '</td>';
                         }
