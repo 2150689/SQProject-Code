@@ -12,30 +12,29 @@
     <body>
     <section class="my-5 py-5">
         <div class="container">
-            <section class="left_header">
-                <a id="backButton" href="index.html" class="btn btn-primary">Go back to Index Page</a>
-            </section>
-            <section class="mb-5 right_header">
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-secondary active" id="labelOption1">
-                        <input type="radio" name="options" id="option1" autocomplete="off"> Accept Manually
-                    </label>
-                    <label class="btn btn-secondary" id="labelOption2">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> Accept Automatically
-                    </label>
+            <div class="row">
+                <div class="col-4">
+                    <a id="backButton" href="index.html" class="btn btn-primary">Go back to Index Page</a>
                 </div>
-                <div>
+                <div class="col-8 text-right d-flex justify-content-end">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary active" id="labelOption1">
+                            <input type="radio" name="options" id="option1" autocomplete="off"> Accept Manually
+                        </label>
+                        <label class="btn btn-secondary" id="labelOption2">
+                            <input type="radio" name="options" id="option2" autocomplete="off"> Accept Automatically
+                        </label>
+                    </div>
+                </div>
+                <div class="col-12 text-right d-flex justify-content-end">
                     <button class="btn btn-secondary" id="confirmButton">Confirm</button>
                 </div>
-            </section>
 
-            <div id="TableArea">
-                <form id="FormTableArea" action="#" class="form-horizontal" method="post" novalidate>
-                </form>
+                <div id="TableArea" class="my-5">
+                    <form id="FormTableArea" action="#" class="form-horizontal" method="post" novalidate></form>
+                </div>
             </div>
         </div>
-
-        <button class=""></button>
     </section>
     </body>
     <script src="js/double.js"></script>
