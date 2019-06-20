@@ -123,6 +123,11 @@
                 return true;
             }
 
+            /*if(array[arrayPosition].Surname === contact.Surname && array[arrayPosition].Occupation === contact.Occupation
+                && array[arrayPosition].City === contact.City){
+                return true;
+            }*/
+
             /*if(array[arrayPosition].Phone === contact.Phone || array[arrayPosition].Email === contact.Email){
                 return true;
             }*/
@@ -192,13 +197,27 @@
                 stringToAdd += '<tbody>';
                 for (let position = 0; position < mapToIterate.get(keyPosition).length; position++){
                     stringToAdd += '<tr><th scope="row" align="center">' + (position + 1) + '</th>';
-                    for (let columnsPos = 0; columnsPos < arrayColumns.length; columnsPos++) {
+                    for (let columnsPos = 0; columnsPos < arrayColumns.length - 2; columnsPos++) {
                         if(mapToIterate.get(keyPosition)[position][arrayColumns[columnsPos]] === null){
                             stringToAdd += '<td style="text-align:center">' + "--------------" + '</td>';
                         }else{
                             stringToAdd += '<td style="text-align:center">' + mapToIterate.get(keyPosition)[position][arrayColumns[columnsPos]] + '</td>';
                         }
                     }
+                    //Creating
+                    stringToAdd += '<td style="text-align:center">' +
+                        '<div class="custom-control custom-radio">' +
+                        '<input value="1" type="radio" id="customRadio' + keyPosition + '.' + position + 'A" name="customRadio' + keyPosition + '.' + position + '" class="custom-control-input">' +
+                        '<label class="custom-control-label" for="customRadio' + keyPosition + '.' + position + 'A"></label>' +
+                        '</div>' +
+                        '</td>' +
+                        '<td style="text-align:center">' +
+                        '<div class="custom-control custom-radio">' +
+                        '<input value="0" type="radio" id="customRadio' + keyPosition + '.' + position + 'B" name="customRadio' + keyPosition + '.' + position + '" class="custom-control-input">' +
+                        '<label class="custom-control-label" for="customRadio' + keyPosition + '.' + position + 'B"></label>' +
+                        '</div></td>';
+
+                    stringToAdd += '</tr>';
                 }
                 stringToAdd += '</tbody>';
 
@@ -211,6 +230,7 @@
 
                 //Resetting all variables
                 stringToAdd = "";
+                arrayColumns = [];
                 counter++;
             }
         }
@@ -232,6 +252,10 @@
                 }
             }
         }
+        //Add the Radio Buttons
+        if(arrayColumns.length !== 0){
+            arrayColumns.push("Accept","Reject");
+        }
         return reOrderColumns(arrayColumns);
     }
 
@@ -245,6 +269,8 @@
             {StreetAddress: "StreetAddress"},
             {Source: "Source"},
             {Occupation: "Occupation"},
+            {Accept: "Accept"},
+            {Decline: "Decline"}
         ];
 
         let referenceArray= [];
@@ -266,6 +292,82 @@
             }
         }
         return false;
+    }
+
+    function createButtonsForDefaultActions(mapToIterate) {
+        $('#option1').click(function (e) {
+            e.preventDefault();
+            $('#labelOption1').addClass("active");
+            $('#labelOption2').removeClass("active");
+        });
+
+        $('#option2').click(function (e) {
+            e.preventDefault();
+            $('#labelOption2').addClass("active");
+            $('#labelOption1').removeClass("active");
+        });
+
+        $('#confirmButton').click(function (e) {
+            e.preventDefault();
+
+            let idsToIgnore = [];
+
+            if($('#labelOption1').hasClass("active")){
+                //We are on the label which states the manual.
+                let inputs = document.getElementsByTagName("input");
+                let uniqueInputs = [];
+                $.each(inputs, function(i, el){
+                    if($.inArray(el.name, uniqueInputs) === -1) uniqueInputs.push(el.name);
+                });
+
+                let input, value;
+                let boolean = false;
+                let keyPosition = 0;
+                for(let i = 1; i < uniqueInputs.length; i++) {
+                    boolean = false;
+                    input = document.getElementsByName(uniqueInputs[i]);
+
+                    for(let nodePosition = 0; nodePosition < input.length; nodePosition++){
+                        if(input[nodePosition].checked){
+                            boolean = true;
+                            value = input[nodePosition].value;
+
+                            //Does is not end with a .0? Then it means the keyPosition is increased.
+                            if(uniqueInputs[i].endsWith(".0")){
+                                keyPosition++;
+                            }
+
+                            for(let position = 0; position < input.length; position++) {
+                                if(position!==nodePosition){
+                                    idsToIgnore.push(mapToIterate.get(keyPosition)[position].Guid);
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    if(!boolean){
+                        alert("WRONG. Fill everything, please");
+                        return;
+                    }
+                }
+            }else{
+                //First iteration -- Lets just accept the 1st one, and decline the rest.
+                for(let keyPosition = 1; keyPosition <= mapToIterate.size; keyPosition++) {
+                    for(let position = 1; position < mapToIterate.get(keyPosition).length; position++){
+                        idsToIgnore.push(mapToIterate.get(keyPosition)[position].Guid);
+                    }
+                }
+            }
+            redirection(idsToIgnore);
+        });
+    }
+
+    function redirection(idsToIgnore){
+        window.sessionStorage.setItem("idsSize", idsToIgnore.length.toString());
+        for(let pos = 0; pos < idsToIgnore.length; pos++){
+            window.sessionStorage.setItem("ids" + pos, idsToIgnore[pos]);
+        }
+        window.location.href = "duplicateFree.html";
     }
 
 })();
