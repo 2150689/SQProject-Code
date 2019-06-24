@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="5450459e-b037-405d-bf42-48770fb2d5ee" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/duplicateFree.html" beforeDir="false" afterPath="$PROJECT_DIR$/duplicateFree.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/duplicates.html" beforeDir="false" afterPath="$PROJECT_DIR$/duplicates.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/details.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/details.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/double.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/double.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +32,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/duplicateFree.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
@@ -37,18 +42,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/contacts.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="41">
+              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+              <folding>
+                <element signature="n#style#0;n#table#0;n#div#0;n#div#1;n#div#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/double.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1019">
+            <state relative-caret-position="6324">
               <caret line="372" column="5" selection-start-line="372" selection-start-column="5" selection-end-line="372" selection-end-column="5" />
-              <folding>
-                <element signature="n#style#0;n#th#0;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#1;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -63,17 +81,18 @@
       <list>
         <option value="$PROJECT_DIR$/js/contacts.js" />
         <option value="$PROJECT_DIR$/../Code/index.html" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/details.html" />
         <option value="$PROJECT_DIR$/js/details.js" />
         <option value="$PROJECT_DIR$/js/double.js" />
         <option value="$PROJECT_DIR$/duplicates.html" />
         <option value="$PROJECT_DIR$/duplicateFree.html" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1020" />
     <option name="height" value="1047" />
   </component>
@@ -82,6 +101,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -94,16 +114,10 @@
               <item name="RepoCode" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="RepoCode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RepoCode" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -123,11 +137,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.duplicates.html">
+  <component name="RunManager" selected="JavaScript Debug.index.html (1)">
     <configuration default="true" type="JavascriptDebugType" engineId="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3">
       <method v="2" />
     </configuration>
     <configuration name="duplicates.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" engineId="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" uri="http://localhost:63343/RepoCode/duplicates.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" engineId="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" uri="http://localhost:63342/RepoCode/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" engineId="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" uri="http://localhost:63343/WebContacts/index.html" useBuiltInWebServerPort="true">
@@ -135,6 +152,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.index.html (1)" />
         <item itemvalue="JavaScript Debug.duplicates.html" />
         <item itemvalue="JavaScript Debug.index.html" />
       </list>
@@ -158,23 +176,24 @@
       <workItem from="1560851132311" duration="479000" />
       <workItem from="1560869752895" duration="893000" />
       <workItem from="1560873210008" duration="2334000" />
+      <workItem from="1561390703652" duration="1031000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10681000" />
+    <option name="totallyTimeSpent" value="11712000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4976415" visible="true" weight="0.17324094" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4976415" visible="true" weight="0.1748401" />
       <window_info id="Structure" order="1" sideWeight="0.5023585" side_tool="true" weight="0.22483222" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4716714" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.47128928" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -228,20 +247,6 @@
     <entry file="file://$PROJECT_DIR$/../Code/js/contacts.js" />
     <entry file="file://$PROJECT_DIR$/../Code/details.html" />
     <entry file="file://$PROJECT_DIR$/../Code/details.js" />
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/contacts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="41" column="42" lean-forward="true" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/details.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -256,21 +261,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/double.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1019">
-          <caret line="372" column="5" selection-start-line="372" selection-start-column="5" selection-end-line="372" selection-end-column="5" />
-          <folding>
-            <element signature="n#style#0;n#th#0;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/duplicates.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
@@ -278,10 +268,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/double.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6324">
+          <caret line="372" column="5" selection-start-line="372" selection-start-column="5" selection-end-line="372" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/duplicateFree.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/contacts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="41">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+          <folding>
+            <element signature="n#style#0;n#table#0;n#div#0;n#div#1;n#div#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

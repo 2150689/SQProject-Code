@@ -230,7 +230,6 @@
 
                 //Resetting all variables
                 stringToAdd = "";
-                arrayColumns = [];
                 counter++;
             }
         }
@@ -284,7 +283,6 @@
         return referenceArray;
     }
 
-
     function findInMap(map, val){
         for (let v of map.values()) {
             if (v.includes(val)) {
@@ -310,39 +308,56 @@
         $('#confirmButton').click(function (e) {
             e.preventDefault();
 
+            //List of IDS to ignore on the next page.
             let idsToIgnore = [];
 
             if($('#labelOption1').hasClass("active")){
                 //We are on the label which states the manual.
                 let inputs = document.getElementsByTagName("input");
                 let uniqueInputs = [];
+
+                //Get all customRadios available to either accept or Decline
                 $.each(inputs, function(i, el){
                     if($.inArray(el.name, uniqueInputs) === -1) uniqueInputs.push(el.name);
                 });
 
-                let input, value;
-                let boolean = false;
-                let keyPosition = 0;
+
+                let input, boolean = false, positionOneOnMap, positionTwoOnMap, positionOnString;
+
+                //For each customRadio
                 for(let i = 1; i < uniqueInputs.length; i++) {
                     boolean = false;
                     input = document.getElementsByName(uniqueInputs[i]);
 
+                    //Get each possible answer (Accept/Decline)
                     for(let nodePosition = 0; nodePosition < input.length; nodePosition++){
+
+                        //Is this option selected?
                         if(input[nodePosition].checked){
+
+                            //We found a position selected. We don't need to alert case something is not selected.
                             boolean = true;
-                            value = input[nodePosition].value;
+                            // value = input[nodePosition].value;
 
-                            //Does is not end with a .0? Then it means the keyPosition is increased.
-                            if(uniqueInputs[i].endsWith(".0")){
+                            //Does is end with a .0? Then it means the keyPosition is increased. (Map stuff)
+
+                            /*if(uniqueInputs[i].endsWith(".0")){
                                 keyPosition++;
+                            }*/
+
+                            //Are we on the break?
+                            if(1 === nodePosition){
+                                //The sequence is "CustomInputN1.N2A". N1 is related to the position on the map. N2 is the position inside the array
+
+                                //Get first position
+                                positionOneOnMap = parseInt(uniqueInputs[i].split(".")[0].replace(/[^0-9]/g, ' ').trim());
+                                positionTwoOnMap = parseInt(uniqueInputs[i].split(".")[1].replace(/[^0-9]/g, ' ').trim());
+
+                                idsToIgnore.push(mapToIterate.get(positionOneOnMap)[positionTwoOnMap].Guid);
                             }
 
-                            for(let position = 0; position < input.length; position++) {
-                                if(position!==nodePosition){
-                                    idsToIgnore.push(mapToIterate.get(keyPosition)[position].Guid);
-                                }
-                            }
-                            break;
+                            //We can accept both case
+                            //break;
                         }
                     }
                     if(!boolean){
@@ -369,5 +384,4 @@
         }
         window.location.href = "duplicateFree.html";
     }
-
 })();

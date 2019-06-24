@@ -12,7 +12,26 @@
     </head>
 </head>
 <body>
+<div class="container">
+    <div class="row py-2">
+        <form action="#" class="form-horizontal col-12" id="sourceForm" method="post" novalidate>
+            <div class="form-group">
+                <label class="control-label col-md-1">Source:</label>
+                <select id="source"></select>
+                <button class="btn btn-primary" type="submit">Search by Source!</button>
+            </div>
+        </form>
+        <a id="unfilteredButton" class="btn btn-primary">Go back to Unfiltered List</a>
+    </div>
+    <div id="resultPanel" class="panel panel-success hidden">
+        <div class="panel-body">
+            <table id="contactsTable" class="display" style="width:100%">
+            </table>
+        </div>
+    </div>
+</div>
 </body>
+<script src="js/duplicateFree.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 </html>
