@@ -30,10 +30,10 @@
     };
 
     function fetchContactPhoto(photoURL) {
-
+        let url;
         if (photoURL != null){
             //get user image via imaginary service
-            var url = "http://34.90.129.208/resize?width=180&height=180&type=jpeg&url=" + photoURL;
+            url = "http://34.90.129.208/resize?width=180&height=180&type=jpeg&url=" + photoURL;
             $.ajax({
                 url : url,
                 cache: true,
@@ -44,7 +44,7 @@
             });
         } else {
             //get default image via imaginary service
-            var url = "http://34.90.129.208/resize?width=180&height=180&type=jpeg&url=https://www.seekpng.com/png/detail/115-1150053_avatar-png-transparent-png-royalty-free-default-user.png";
+            url = "http://34.90.129.208/resize?width=180&height=180&type=jpeg&url=https://www.seekpng.com/png/detail/115-1150053_avatar-png-transparent-png-royalty-free-default-user.png";
             $.ajax({
                 url : url,
                 cache: true,
