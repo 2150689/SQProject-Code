@@ -13,9 +13,15 @@
         $.getJSON("http://contactsqs2.apphb.com/Service.svc/rest/contact/byguid/" + getUrlVars()["id"])
             .done(function(results) {
                 //For each key/value gotten, which only gets the ones that aren't NULL
-                populateTable(handleArray(results))
+                populateTable(handleArray(results));
                 //Add the photo case there is a photoURL
                 $("#photoHolder").attr("src", ((results.PhotoUrl != null) ? results.PhotoUrl : "https://upload.wikimedia.org/wikipedia/en/e/ee/Unknown-person.gif"));
+
+                $('#backButton').click(function (e) {
+                    window.history.back();
+                });
+
+
             }).fail(function(err) {
             console.log(err);
             alert("Some error occurred. Going back");
@@ -36,7 +42,6 @@
             cell2.appendChild(text2);
         }
     }
-
 
     function getUrlVars() {
         var vars = {};
