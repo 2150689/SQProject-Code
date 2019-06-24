@@ -27,6 +27,7 @@
         $select.removeAttr('disabled');
     }
 
+
     function filterBySource(data, $buttonSource, source) {
         var $panel = $('#resultPanel');
         $buttonSource.attr('disabled', 'disabled');
