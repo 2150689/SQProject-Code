@@ -98,4 +98,9 @@
             });
     })();
 
+    $source.submit(function (e) {
+        e.preventDefault();
+        filterBySource(null, $buttonSource, $('#source').val());
+    });
+
 })();
