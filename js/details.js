@@ -15,7 +15,7 @@
                 //For each key/value gotten, which only gets the ones that aren't NULL
                 populateTable(handleArray(results));
                 //Add the photo case there is a photoURL
-                fetchContactPhoto(results.PhotoUrl)
+                fetchContactPhoto(results.PhotoUrl);
                 $('#backButton').click(function (e) {
                     window.history.back();
                 });
@@ -33,18 +33,18 @@
         let url;
         if (photoURL != null){
             //get user image via imaginary service
-            url = "http://34.90.129.208/resize?width=180&height=180&type=jpeg&url=" + photoURL;
+            url = "http://34.90.129.208/resize?width=180&height=180&type=jpeg&force=true&url=" + photoURL;
             $.ajax({
                 url : url,
                 cache: true,
                 processData : false,
-            }).always(function(photo){
+            }).always(function(){
                 //the always will try until it gets the correct value
                 $("#photoHolder").attr("src", url).fadeIn();
             });
         } else {
             //get default image via imaginary service
-            url = "http://34.90.129.208/resize?width=180&height=180&type=jpeg&url=https://www.seekpng.com/png/detail/115-1150053_avatar-png-transparent-png-royalty-free-default-user.png";
+            url = "http://34.90.129.208/resize?width=180&height=180&type=jpeg&force=true&url=https://www.seekpng.com/png/detail/115-1150053_avatar-png-transparent-png-royalty-free-default-user.png";
             $.ajax({
                 url : url,
                 cache: true,
@@ -54,10 +54,7 @@
             });
 
         }
-
-
     }
-
 
     function populateTable(data){
         let table = document.getElementById("detailsTable");
@@ -78,15 +75,6 @@
             vars[key] = value;
         });
         return vars;
-    }
-
-    function createThumbnail(imageUrl, url) {
-        var img = imageUrl === null ? 'http://placehold.it/64x85' : imageUrl;
-        var $image = $('<img/>', {src: img, 'class': 'media-object', width:140, height:80});
-        var $anchor = $('<a/>', {href: url})
-            .append($image);
-        return $('<div/>', {'class': 'media-left'})
-            .append($anchor);
     }
 
     function handleArray(results){

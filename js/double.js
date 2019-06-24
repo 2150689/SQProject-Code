@@ -8,7 +8,7 @@
                 if(mapToIterate.size === 0){
                     //Advance.
                 }else{
-                    createTables(mapToIterate);
+                    createTables(mapToIterate, results);
                     createButtonsForDefaultActions(mapToIterate);
                 }
             }).fail(function(err) {
@@ -156,7 +156,7 @@
         return newMap;
     }
 
-    function createTables(mapToIterate){
+    function createTables(mapToIterate, results){
         let formArea = $('#FormTableArea');
         let stringToAdd = "";
         let counter = 1;
@@ -196,7 +196,7 @@
                 //Creation of Body
                 stringToAdd += '<tbody>';
                 for (let position = 0; position < mapToIterate.get(keyPosition).length; position++){
-                    stringToAdd += '<tr><th scope="row" align="center">' + (position + 1) + '</th>';
+                    stringToAdd += '<tr><th scope="row" align="center">' + (results.indexOf(mapToIterate.get(keyPosition)[position]) + 1) + '</th>';
                     for (let columnsPos = 0; columnsPos < arrayColumns.length - 2; columnsPos++) {
                         if(mapToIterate.get(keyPosition)[position][arrayColumns[columnsPos]] === null){
                             stringToAdd += '<td style="text-align:center">' + "--------------" + '</td>';
