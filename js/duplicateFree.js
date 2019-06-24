@@ -26,7 +26,7 @@
                         }
                     });
                     array = newData;
-                    fetchSources(newData);
+                    getListOfSources(newData);
                     filterBySource(newData, $('button', $('#sourceForm')), "All");
                 });
         })();
@@ -61,19 +61,20 @@
 
         let counter = 1;
         results.forEach( function(dataLine) {
-            t.row.add([
-                ((counter)),
-                ((dataLine.GivenName != null) ? dataLine.GivenName : "--------------"),
-                ((dataLine.Surname != null) ? dataLine.Surname : "--------------"),
-                ((dataLine.Phone != null) ? dataLine.Phone : "--------------"),
-                ((dataLine.Source != null) ? dataLine.Source : "--------------"),
-                ((dataLine.City != null) ? dataLine.City : "--------------"),
-                "<a href=\"details.html?id=" + dataLine.Guid + "\" class=\"btn btn-primary\">Details</a>"
-            ]).draw(false);
+            t.row.add(
+                row(dataLine, counter)
+            ).draw(false);
             counter++;
         });
     }
 
+    function row(dataLine, counter)
+    {
+        return [counter, ((dataLine.GivenName != null) ? dataLine.GivenName : "--------------"),
+            ((dataLine.Surname == null) ? "--------------" : dataLine.Surname), ((dataLine.Phone == null) ? "--------------" : dataLine.Phone),
+            ((dataLine.Source == null) ? "--------------" : dataLine.Source), ((dataLine.City == null) ?  "--------------" : dataLine.City),
+        "<a href=\"details.html?id=" + dataLine.Guid + "\" class=\"btn btn-primary\">Details</a>"];
+    }
     $('#sourceForm').submit(function (e) {
         e.preventDefault();
         filterBySource(array, $('button', $('#sourceForm')), $('#source').val());
@@ -106,29 +107,27 @@
         $panel.removeClass('hidden');
     }
 
-    function fetchSources(item) {
-        //Array that will contain the sources avaliable;
-        var arrayToAdd = [];
+    function getListOfSources(item) {
+        //Array that will contain the available sources;
+        var arraySources = [];
 
-        //Part that will get the SELECT Tag.
-        var $select = $('#source');
         //We need to add the .source to all items.
-        $select.attr('disabled', 'disabled');
+        $('#source').attr('disabled', 'disabled');
 
         //The first position must contain "ALL"
-        arrayToAdd.push("All");
-        $select.append($('<option>', {"value": "All"}).append("All"));
+        arraySources.push("All");
+        $('#source').append($('<option>', {"value": "All"}).append("All"));
 
         //For each item, on the received argument item;
         item.forEach(function(item){
-            if(!arrayToAdd.includes(item.Source)){
+            if(!arraySources.includes(item.Source)){
                 //push it to the array, so that it wont get repeated;
-                arrayToAdd.push(item.Source);
+                arraySources.push(item.Source);
                 //Add it to the SELECT Tag.
-                $select.append($('<option>', {"value": item.Source}).append(item.Source));
+                $('#source').append($('<option>', {"value": item.Source}).append(item.Source));
             }
         });
         //Make it available again
-        $select.removeAttr('disabled');
+        $('#source').removeAttr('disabled');
     }
 })();

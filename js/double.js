@@ -322,7 +322,7 @@
                 });
 
 
-                let input, boolean = false, positionOneOnMap, positionTwoOnMap, positionOnString;
+                let input, boolean = false, positionOneOnMap, positionTwoOnMap;
 
                 //For each customRadio
                 for(let i = 1; i < uniqueInputs.length; i++) {
