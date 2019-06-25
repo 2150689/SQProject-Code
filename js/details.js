@@ -44,7 +44,7 @@
             });
         } else {
             //get default image via imaginary service
-            url = "http://34.90.129.208/resize?width=180&height=180&type=jpeg&force=true&url=https://www.seekpng.com/png/detail/115-1150053_avatar-png-transparent-png-royalty-free-default-user.png";
+            url = "http://34.90.129.208/resize?width=180&height=180&type=jpeg&force=true&url=https://upload.wikimedia.org/wikipedia/en/e/ee/Unknown-person.gif";
             $.ajax({
                 url : url,
                 cache: true,
